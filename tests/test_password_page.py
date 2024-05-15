@@ -5,7 +5,7 @@ from pages.password_page import PasswordPage
 
 @allure.feature("Тесты страницы восстановления пароля")
 class TestPasswordPage:
-    @allure.story("Проверка заголовка страницы восстановления пароля")
+    @allure.title("Проверка заголовка страницы восстановления пароля")
     def test_reset_password_page_title(self, driver):
         password_page = PasswordPage(driver)
         password_page.navigate_to_page(URLs.LOGIN_PAGE_URL)
@@ -13,7 +13,7 @@ class TestPasswordPage:
         element = password_page.find_element(*PasswordPageLocators.PASSWORD_RECOVERY_BUTTON)
         assert "Восстановление пароля" in element.text
 
-    @allure.story("Ввод почты и сброс пароля")
+    @allure.title("Ввод почты и сброс пароля")
     def test_enter_email_and_click_reset(self, driver):
         password_page = PasswordPage(driver)
         password_page.navigate_to_page(URLs.FORGOT_PASSWORD_URL)
@@ -22,7 +22,7 @@ class TestPasswordPage:
         result = driver.find_element(*result_locator)
         assert result.is_displayed()
 
-    @allure.story("Показать/скрыть пароль")
+    @allure.title("Показать/скрыть пароль")
     def test_show_hide_password_button(self, driver):
         password_page = PasswordPage(driver)
         password_page.navigate_to_page(URLs.RESET_PASSWORD_URL)

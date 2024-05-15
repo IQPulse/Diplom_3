@@ -14,4 +14,4 @@ class MainPageLocators:
     INGREDIENT_DETAILS = (By.XPATH, "//h2[contains(text(),'Детали ингредиента')]")  # Карточка ингредиента текст "Детали ингредиента"
     COUNTER_INCREASE = (By.XPATH, "//p[normalize-space()='2']")  # Счетчик ингредиента
     WAIT_FOR_READINESS = (By.XPATH, "// p[contains(text(), 'Дождитесь готовности на орбитальной станции')]")  # Текст "Дождитесь готовности на орбитальной станции" на модальном окне
-    FIND_AND_SAVE_ELEMENT_ORDER_NUMBER_APPEARS = (By.XPATH, "/html/body/div[1]/div/section/div[1]/div/h2")  # Номер "Заказа на Главной странице"
+    FIND_AND_SAVE_ELEMENT_ORDER_NUMBER_APPEARS = (By.XPATH, "//h2[contains(@class,'digits-large mb-8')]")  # Номер "Заказа на Главной странице"

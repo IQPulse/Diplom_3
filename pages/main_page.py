@@ -4,10 +4,11 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from locators.main_page_locators import MainPageLocators
 from locators.headers_locators import HeadersLocators
+from pages.base_page import BasePage
 
-class MainPage:
+class MainPage(BasePage):
     def __init__(self, driver):
-        self.driver = driver
+        super().__init__(driver)
 
     @allure.step("Нажать кнопку 'Конструктор'")
     def click_constructor_button(self):

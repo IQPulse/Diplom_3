@@ -2,10 +2,11 @@ import allure
 from locators.profile_page_locators import ProfilePageLocators
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from pages.base_page import BasePage
 
-class ProfilePage:
+class ProfilePage(BasePage):
     def __init__(self, driver):
-        self.driver = driver
+        super().__init__(driver)
 
     @allure.step("Перейти в профиль")
     def go_to_profile(self):

@@ -5,10 +5,11 @@ from locators.history_page_locators import HistoryPageLocators
 from locators.main_page_locators import MainPageLocators
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from pages.base_page import BasePage
 
-class FeedPage:
+class FeedPage(BasePage):
     def __init__(self, driver):
-        self.driver = driver
+        super().__init__(driver)
 
     @allure.step("Закрыть окно заказа")
     def close_order_window(self):
@@ -38,6 +39,7 @@ class FeedPage:
 
     @allure.step("Поиск заказа на странице ленты заказов")
     def search_order_in_feed_page(self):
+        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((FeedPageLocators.SEARCH_ORDER_IN_FEED_PAGE)))
         element = self.driver.find_element(*FeedPageLocators.SEARCH_ORDER_IN_FEED_PAGE)
         value = element.text
         return value
@@ -64,7 +66,7 @@ class FeedPage:
 
     @allure.step("Найти и сохранить номер заказа в ленте заказов")
     def find_and_save_element_order_number_appears_feed(self):
-        element = self.driver.find_element(*FeedPageLocators.FIND_AND_SAVE_ELEMENT_ORDER_NUMBER_APPEARS_FEED)
+        element = self.driver.find_element(*FeedPageLocators.SEARCH_ORDER_IN_FEED_PAGE)
         value = element.text
         return value
 
