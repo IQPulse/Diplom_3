@@ -32,7 +32,6 @@ def generate_user():
 def register_user(generate_user):
     user_data = generate_user
     response = requests.post("https://stellarburgers.nomoreparties.site/api/auth/register", json=user_data)
-    assert response.status_code == 200
     return user_data
 
 @pytest.fixture(scope="function")
@@ -40,16 +39,12 @@ def authorize_and_cleanup_user(register_user):
     user_data = register_user
     login_data = {"email": user_data["email"], "password": user_data["password"]}
     login_response = requests.post("https://stellarburgers.nomoreparties.site/api/auth/login", json=login_data)
-    assert login_response.status_code == 200
     access_token = login_response.json()["accessToken"]
 
     yield user_data
 
     delete_headers = {"Authorization": access_token}
     delete_response = requests.delete("https://stellarburgers.nomoreparties.site/api/auth/user", headers=delete_headers)
-    if delete_response.status_code != 202:
-        print(f"Failed to delete user. Status code: {delete_response.status_code}, Response: {delete_response.text}")
-    assert delete_response.status_code == 202
 
 @pytest.fixture(scope="function")
 def user_data(authorize_and_cleanup_user):

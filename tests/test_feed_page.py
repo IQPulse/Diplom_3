@@ -51,9 +51,9 @@ class TestFeedPage:
         assert new_order_number == initial_order_number + 1
 
     @allure.title("Счетчик увеличивается за сегодня при создании нового заказа")
-    def test_counter_increases_today_when_new_order_created(self, feed_page, main_page, user_data):
+    def test_counter_increases_today_when_new_order_created(self, feed_page, main_page, authorize_and_cleanup_user):
         feed_page.open_login_page()
-        feed_page.login(user_data["email"], user_data["password"])
+        feed_page.login(authorize_and_cleanup_user["email"], authorize_and_cleanup_user["password"])
         main_page.click_orders_feed_button()
         initial_order_number_today = feed_page.find_and_save_element_counter_increases_today()
         feed_page.open_main_page()
